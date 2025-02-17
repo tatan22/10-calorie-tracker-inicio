@@ -41,10 +41,10 @@ export const activityReducer = (
     }
 
     if(action.type === 'set-activeId') {
-         return {
+        return {
             ...state,
             activeId: action.payload.id
-         }
+        }
     }
 
     if(action.type === 'delete-activity') {
