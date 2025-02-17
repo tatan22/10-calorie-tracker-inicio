@@ -30,5 +30,17 @@
     "tailwindcss": "^3.3.3",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
-  }
+  },
+  "description": "React y TypeScript ",
+  "main": "postcss.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tatan22/10-calorie-tracker-inicio.git"
+  },
+  "author": "Jhonatan Cardona Duarte",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tatan22/10-calorie-tracker-inicio/issues"
+  },
+  "homepage": "https://github.com/tatan22/10-calorie-tracker-inicio#readme"
 }
