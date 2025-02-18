@@ -20,9 +20,7 @@ export default function Form() {
       const selectedActivity = state.activities.find(
         (stateActivity) => stateActivity.id === state.activeId
       );
-      if (selectedActivity) {
-        setActivity(selectedActivity);
-      }
+      if (selectedActivity) setActivity(selectedActivity);
     }
   }, [state.activeId, state.activities]);
 
@@ -44,24 +42,25 @@ export default function Form() {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch({ type: "save-activity", payload: { newActivity: activity } });
-    setActivity({
-      ...initialState,
-      id: uuidv4(),
-    });
+    setActivity({ ...initialState, id: uuidv4() });
   };
 
   return (
     <form
-      className="space-y-5 bg-white shadow p-10 rounded-lg"
+      className="max-w-md mx-auto mt-10 space-y-6 bg-white shadow-lg p-8 rounded-xl border border-gray-200"
       onSubmit={handleSubmit}
     >
-      <div className="grid grid-cols-1 gap-3">
-        <label htmlFor="category" className="font-bold">
+      <h2 className="text-2xl font-bold text-gray-700 text-center">
+        Agrega tu Actividad
+      </h2>
+
+      <div className="grid grid-cols-1 gap-4">
+        <label htmlFor="category" className="font-medium text-gray-600">
           Categoría:
         </label>
         <select
           id="category"
-          className="border border-slate-300 p-2 rounded-lg w-full bg-white"
+          className="border border-gray-300 p-2 rounded-lg w-full bg-white focus:outline-none focus:ring-2 focus:ring-blue-400"
           value={activity.category}
           onChange={handleChange}
         >
@@ -73,40 +72,41 @@ export default function Form() {
         </select>
       </div>
 
-      <div className="grid grid-cols-1 gap-3">
-        <label htmlFor="name" className="font-bold">
+      <div className="grid grid-cols-1 gap-4">
+        <label htmlFor="name" className="font-medium text-gray-600">
           Actividad:
         </label>
         <input
           id="name"
           type="text"
-          className="border border-slate-300 p-2 rounded-lg"
-          placeholder="Ej. Comida, Jugo de Naranja, Ensalada, Ejercicio, Pesas, Bicicleta"
+          className="border border-gray-300 p-2 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-blue-400"
+          placeholder="Ej. Comida, Jugo, Ensalada, Ejercicio, Pesas, Bicicleta"
           value={activity.name}
           onChange={handleChange}
         />
       </div>
 
-      <div className="grid grid-cols-1 gap-3">
-        <label htmlFor="calories" className="font-bold">
+      <div className="grid grid-cols-1 gap-4">
+        <label htmlFor="calories" className="font-medium text-gray-600">
           Calorías:
         </label>
         <input
           id="calories"
           type="number"
-          className="border border-slate-300 p-2 rounded-lg"
+          className="border border-gray-300 p-2 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-blue-400"
           placeholder="Calorías. ej. 300 o 500"
           value={activity.calories === 0 ? "" : activity.calories}
           onChange={handleChange}
         />
       </div>
 
-      <input
+      <button
         type="submit"
-        className="bg-gray-800 hover:bg-gray-900 w-full p-2 font-bold uppercase text-white cursor-pointer disabled:opacity-10"
-        value={activity.category === 1 ? "Guardar Comida" : "Guardar Ejercicio"}
+        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300 disabled:opacity-50"
         disabled={!isValidActivity()}
-      />
+      >
+        {activity.category === 1 ? "Guardar Comida" : "Guardar Ejercicio"}
+      </button>
     </form>
   );
 }
