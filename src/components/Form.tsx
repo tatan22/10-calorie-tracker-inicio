@@ -4,6 +4,11 @@ import { categories } from "../data/categories";
 import type { Activity } from "../types";
 import { useActivity } from "../hooks/useActivity";
 
+interface Feedback {
+  message: string;
+  type: "success" | "error" | "";
+}
+
 const initialState: Activity = {
   id: uuidv4(),
   category: 1,
@@ -14,6 +19,7 @@ const initialState: Activity = {
 export default function Form() {
   const { state, dispatch } = useActivity();
   const [activity, setActivity] = useState<Activity>(initialState);
+  const [feedback, setFeedback] = useState<Feedback>({ message: "", type: "" });
 
   useEffect(() => {
     if (state.activeId) {
@@ -41,9 +47,29 @@ export default function Form() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch({ type: "save-activity", payload: { newActivity: activity } });
-    setActivity({ ...initialState, id: uuidv4() });
+    try {
+      dispatch({ type: "save-activity", payload: { newActivity: activity } });
+      setFeedback({
+        message: "Datos guardados correctamente!",
+        type: "success",
+      });
+      setActivity({ ...initialState, id: uuidv4() });
+      setTimeout(() => setFeedback({ message: "", type: "" }), 3000);
+    } catch (error) {
+      setFeedback({
+        message: "Hubo un error al guardar los datos. Inténtalo de nuevo.",
+        type: "error",
+      });
+      setTimeout(() => setFeedback({ message: "", type: "" }), 3000);
+    }
   };
+
+  const feedbackClass =
+    feedback.type === "success"
+      ? "bg-green-100 border border-green-200 text-green-700"
+      : feedback.type === "error"
+      ? "bg-red-100 border border-red-200 text-red-700"
+      : "";
 
   return (
     <form
@@ -53,6 +79,12 @@ export default function Form() {
       <h2 className="text-2xl font-bold text-gray-700 text-center">
         Agrega tu Actividad
       </h2>
+
+      {feedback.message && (
+        <div className={`${feedbackClass} p-3 rounded-md text-center`}>
+          {feedback.message}
+        </div>
+      )}
 
       <div className="grid grid-cols-1 gap-4">
         <label htmlFor="category" className="font-medium text-gray-600">
