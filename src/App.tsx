@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
-import ActivityList from './components/ActivityList'
 import { useActivity } from './hooks/useActivity'
 import Layout from './components/IU-UX/Layout'
 import FormularioUI from './components/IU-UX/Formulario'
+import ActivityListUI from './components/IU-UX/ActivityList';
 
 
 function App() {
@@ -17,10 +17,7 @@ function App() {
         <>
             <Layout state={state} dispatch={dispatch} />
             <FormularioUI state={state} dispatch={dispatch} />
-
-            <section className="p-10 mx-auto max-w-4xl">
-                <ActivityList/>
-            </section>
+            <ActivityListUI  state={state} dispatch={dispatch}/>
         </>
     )
 }

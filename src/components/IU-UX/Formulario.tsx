@@ -6,7 +6,7 @@ type FormProps = {
     dispatch: React.Dispatch<any>;
 };
 
-const FormularioUI: React.FC<FormProps> = ({}) => {
+const FormularioUI: React.FC<FormProps> = () => {
     
 
     return (
