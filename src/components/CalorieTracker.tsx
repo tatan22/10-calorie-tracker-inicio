@@ -4,7 +4,6 @@ import { useActivity } from "../hooks/useActivity"
 export default function CalorieTracker() {
 
     const {caloriesConsumed, caloriesBurned, netCalories}= useActivity();
- 
     return (
         <>
             <h2 className="text-4xl font-black text-white text-center">Resumen de Calorias</h2>
