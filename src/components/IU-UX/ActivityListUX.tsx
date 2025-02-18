@@ -6,7 +6,7 @@ type ActivityListProps = {
     dispatch: React.Dispatch<any>;
 };
 
-const  ActivityListUI: React.FC<ActivityListProps> = () => {
+const  ActivityListUX: React.FC<ActivityListProps> = () => {
     
 
     return (
@@ -16,4 +16,4 @@ const  ActivityListUI: React.FC<ActivityListProps> = () => {
     );
 };
 
-export default ActivityListUI;
+export default ActivityListUX;

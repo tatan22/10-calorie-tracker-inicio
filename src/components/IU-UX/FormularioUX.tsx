@@ -6,7 +6,7 @@ type FormProps = {
     dispatch: React.Dispatch<any>;
 };
 
-const FormularioUI: React.FC<FormProps> = () => {
+const FormularioUX: React.FC<FormProps> = () => {
     
 
     return (
@@ -18,4 +18,4 @@ const FormularioUI: React.FC<FormProps> = () => {
     );
 };
 
-export default FormularioUI;
+export default FormularioUX;
